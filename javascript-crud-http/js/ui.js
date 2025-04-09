@@ -14,11 +14,17 @@ const ui = {
 
   async renderizarPensamentos() {
     const listaPensamentos = document.getElementById("lista-pensamentos");
+    const mensagemVazia = document.getElementById("mensagem-vazia");
     listaPensamentos.innerHTML = "";
 
     try {
       const pensamentos = await api.buscarPensamentos();
-      pensamentos.forEach(ui.adicionarPensamentoNaLista);
+      if (pensamentos.length === 0) {
+        mensagemVazia.style.display = "block";
+      } else {
+        mensagemVazia.style.display = "none";
+        pensamentos.forEach(ui.adicionarPensamentoNaLista);
+      }
     } catch {
       alert("Erro ao renderizar pensamentos");
     }
@@ -31,8 +37,8 @@ const ui = {
     li.classList.add("li-pensamento");
 
     const iconeAspas = document.createElement("img");
-    iconeAspas.src = "/assets/imagens/aspas-azuis.png";
-    iconeAspas.alt = "Aspas Azuis";
+    iconeAspas.src = "assets/imagens/aspas-azuis.png";
+    iconeAspas.alt = "Aspas azuis";
     iconeAspas.classList.add("icone-aspas");
 
     const pensamentoConteudo = document.createElement("div");
@@ -47,6 +53,11 @@ const ui = {
     botaoEditar.classList.add("botao-editar");
     botaoEditar.onclick = () => ui.preencherFormulario(pensamento.id);
 
+    const iconeEditar = document.createElement("img");
+    iconeEditar.src = "assets/imagens/icone-editar.png";
+    iconeEditar.alt = "Editar";
+    botaoEditar.appendChild(iconeEditar);
+
     const botaoExcluir = document.createElement("button");
     botaoExcluir.classList.add("botao-excluir");
     botaoExcluir.onclick = async () => {
@@ -54,14 +65,9 @@ const ui = {
         await api.excluirPensamento(pensamento.id);
         ui.renderizarPensamentos();
       } catch (error) {
-        alert("Erro ao excluir pensamento");
+        alert("Erro ao excluir pensamnto");
       }
     };
-
-    const iconeEditar = document.createElement("img");
-    iconeEditar.src = "assets/imagens/icone-editar.png";
-    iconeEditar.alt = "Editar";
-    botaoEditar.appendChild(iconeEditar);
 
     const iconeExcluir = document.createElement("img");
     iconeExcluir.src = "assets/imagens/icone-excluir.png";
@@ -78,25 +84,6 @@ const ui = {
     li.appendChild(pensamentoAutoria);
     li.appendChild(icones);
     listaPensamentos.appendChild(li);
-  },
-
-  async renderizarPensamentos() {
-    const listaPensamentos = document.getElementById("lista-pensamentos");
-    const mensagemVazia = document.getElementById("mensagem-vazia");
-    listaPensamentos.innerHTML = "";
-
-    try {
-      const pensamentos = await api.buscarPensamentos();
-      pensamentos.forEach(ui.adicionarPensamentoNaLista);
-      if (pensamentos.length === 0) {
-        mensagemVazia.style.display = "block";
-      } else {
-        mensagemVazia.style.display = "none";
-        pensamentos.forEach(ui.adicionarPensamentoNaLista);
-      }
-    } catch {
-      alert("Erro ao renderizar pensamentos");
-    }
   },
 };
 

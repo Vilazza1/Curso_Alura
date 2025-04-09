@@ -11,10 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
   botaoCancelar.addEventListener("click", manipularCancelamento);
 });
 
-function manipularCancelamento() {
-  ui.limparFormulario();
-}
-
 async function manipularSubmissaoFormulario(event) {
   event.preventDefault();
   const id = document.getElementById("pensamento-id").value;
@@ -29,6 +25,10 @@ async function manipularSubmissaoFormulario(event) {
     }
     ui.renderizarPensamentos();
   } catch {
-    alert("Erro ao salvar pensamentos");
+    alert("Erro ao salvar pensamento");
   }
+}
+
+function manipularCancelamento() {
+  ui.limparFormulario();
 }
