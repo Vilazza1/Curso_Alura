@@ -1,6 +1,8 @@
 import ui from "./ui.js"
 import api from "./api.js"
 
+const pensamentosSet = new Set()
+
 const regexConteudo = /^[A-Za-z\s]{10,}$/
 const regexAutor = /^{A-Za-Z{3,15}$/
 
@@ -52,6 +54,13 @@ async function manipularSubmissaoFormulario(event) {
     return
   }
   
+  const chaveNovoPensamento = `${conteudo.trim().toLowerCase()}-${autoria.trim().toLowerCase()}`
+
+  if(pensamentosSet.has(chaveNovoPensamento)) {
+    alert('Pensamento ja cadastrado')
+    return
+  }
+
   try {
     if (id) {
       await api.editarPensamento({ id, conteudo, autoria, data })
