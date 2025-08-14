@@ -4,6 +4,10 @@ import api from "./api.js"
 const regexConteudo = /^[A-Za-z\s]{10,}$/
 const regexAutor = /^{A-Za-Z{3,15}$/
 
+function removerEspacos(string){
+  return string.replaceAll(/\s+/g, '')
+}
+
 function validarAutor(conteudo){
   return regexAutor.test()
 }
@@ -31,11 +35,15 @@ async function manipularSubmissaoFormulario(event) {
   const autoria = document.getElementById("pensamento-autoria").value
   const data = document.getElementById("pensamento-data").value
 
-  if(!validarAutor(conteudo)){
+  const conteudoSemEspacos = removerEspacos(conteudo)
+  const autoriaSemEspacos = removerEspacos(autoria)
+  
+
+  if(!validarAutor(autoriaSemEspacos)){
     alert("Minimo 3 caracteres")
   }
 
-  if(!validarConteudo(conteudo)){
+  if(!validarConteudo(conteudoSemEspacos)){
     alert("Minimo 10 caracteres")
   }
   
