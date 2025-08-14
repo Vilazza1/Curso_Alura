@@ -3,6 +3,18 @@ import api from "./api.js"
 
 const pensamentosSet = new Set()
 
+async function adicionarChaveAoPensamento() {
+  try{
+    const pensamento = await api.buscarPensamentos()
+    pensamento.forEach(pensamento => {
+      const chavePensamento = `${pensamento.conteudo.trim().toLowerCase()}-${pensamento.autoria.trim().toLowerCase()}`
+      pensamentosSet.add(chavePensamento)
+    })
+  } catch (error){
+    alert("Erro ao adicionar chve ao pensmento")
+  }
+}
+
 const regexConteudo = /^[A-Za-z\s]{10,}$/
 const regexAutor = /^{A-Za-Z{3,15}$/
 
@@ -20,6 +32,7 @@ function validarConteudo(conteudo){
 
 document.addEventListener("DOMContentLoaded", () => {
   ui.renderizarPensamentos()
+  adicionarChaveAoPensamento()
 
   const formularioPensamento = document.getElementById("pensamento-form")
   const botaoCancelar = document.getElementById("botao-cancelar")
