@@ -7,7 +7,15 @@ const Time = (props) => {
       <h3 style={{ borderBottom: `4px solid ${props.corPrimaria}` }}>
         {props.nome}
       </h3>
-      <Colaborador />
+      <div className="colaboradores">
+        {props.colaboradores.map((colaborador) => (
+          <Colaborador
+            nome={colaborador.nome}
+            cargo={colaborador.cargo}
+            imagem={colaborador.imagem}
+          />
+        ))}
+      </div>
     </section>
   );
 };
