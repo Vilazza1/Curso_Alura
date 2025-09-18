@@ -4,7 +4,7 @@ const CampoTexto = (props) => {
   const placeholderModificado = `${props.placeholder}...`;
 
   const aoDigitado = (evento) => {
-    props.aoAlterado(evento.target.value)
+    props.aoAlterado(evento.target.value);
   };
 
   return (
