@@ -12,6 +12,10 @@ export default function Post() {
     return post.id === Number(parametros.id);
   });
 
+  if(!post) {
+    return <h1>Post Não encontrado</h1>
+  }
+
   return (
     <div>
       <PostModelo
