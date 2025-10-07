@@ -1,23 +1,13 @@
-import styles from "./post.module.css"
+import { useParams } from "react-router-dom"
 
-export default function Post ({post}){
-    return (
-        <div className={styles.post}>
-            <img
-                className={styles.capa}
-                src={`/assets/posts/${post.id}/capa.png`}
-                alt="Imagem de capa do Post"
-            />
-            
-            <h2 className={styles.titulo}>
-                {post.titulo}
-            </h2>
+export default function Post () {
+    const parametros = useParams();
 
-            <button className={styles.botaoLer}>
-                Ler
-            </button>
-        
+    console.log(parametros);
+
+    return(
+        <div>
+            <h1>Uai {parametros.id}</h1>
         </div>
     )
 }
-
