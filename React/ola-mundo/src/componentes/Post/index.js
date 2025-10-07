@@ -1,13 +1,23 @@
 import { useParams } from "react-router-dom"
+import posts from "json/posts.json"
+import PostModelo from "componentes/PostModelo";
 
 export default function Post () {
     const parametros = useParams();
 
-    console.log(parametros);
+    const post = posts.find((post) => {
+        return post.id === Number(parametros.id);
+    })
 
+    
     return(
         <div>
-            <h1>Uai {parametros.id}</h1>
+            <PostModelo 
+                fotoCapa={`/assets/posts/${post.id}/capa.png`}
+                titulo={post.titulo}
+            >
+                Texto...
+            </PostModelo>
         </div>
     )
 }
