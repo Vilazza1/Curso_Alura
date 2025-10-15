@@ -1,3 +1,4 @@
+import BotaoPrincipal from "componentes/BotaoPrincipal";
 import styles from "./NaoEncontrada.module.css";
 import erro404 from "assets/erro_404.png";
 
@@ -15,8 +16,8 @@ export default function NaoEncontrada() {
           instantes e recarregue a página, ou volte para a página inicial.
         </p>
 
-        <div className={styles.botaoContainer}>
-          <button>Voltar</button>
+        <div className={styles.botao}>
+          <BotaoPrincipal>Voltar</BotaoPrincipal>
         </div>
 
         <img
