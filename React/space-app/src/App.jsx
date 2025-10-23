@@ -5,6 +5,7 @@ import BarraLateral from "./componentes/BarraLateral";
 import Banner from "./componentes/Banner";
 import bannerBackground from "./assets/banner.png";
 import Galeria from "./componentes/Galeria";
+import Tags from "./componentes/Galeria/Tags";
 
 const FundoGradiente = styled.div`
   background: linear-gradient(
