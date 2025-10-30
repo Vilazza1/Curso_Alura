@@ -4,8 +4,9 @@ export const CarrinhoContext = createContext();
 
 export const CarrinhoProvider = ({children}) => {
     return (
-        <createContext.prototype>
+        <CarrinhoContext.Provider>
             {children}
-        </createContext.prototype>
+        </CarrinhoContext.Provider>
+        
     )
 }
