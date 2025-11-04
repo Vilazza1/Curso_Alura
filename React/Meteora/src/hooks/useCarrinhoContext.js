@@ -4,12 +4,14 @@ import { CarrinhoContext } from "@/context/CarrinhoContext";
 export const useCarrinhoContext = () => {
   const { carrinho, setCarrinho } = useContext(CarrinhoContext);
 
-  function mudarQunatidade (id, quantidade){
-    carrinho.map((itemDoCarrinho) => {
-      if(itemDoCarrinho.id ===) itemDoCarrinho.quantidade =+ quantidade;
-      return itemDoCarrinho
-    })
-  }
+function mudarQuantidade(id, quantidade) {
+  return carrinho.map((itemDoCarrinho) => {
+    if (itemDoCarrinho.id === id) {
+      itemDoCarrinho.quantidade += quantidade;
+    }
+    return itemDoCarrinho;
+  });
+}
   
   function adicionarProduto(novoProduto) {
     const temOProduto = carrinho.some(
@@ -24,7 +26,7 @@ export const useCarrinhoContext = () => {
       ]);
     }
 
-    const carrinhoAtualizado = mudarQunatidade(novoProduto.id, 1)
+    const carrinhoAtualizado = mudarQuantidade(novoProduto.id, 1)
 
     setCarrinho([...carrinhoAtualizado]);
   }
@@ -38,7 +40,7 @@ export const useCarrinhoContext = () => {
       );
     }
 
-    const carrinhoAtualizado = mudarQunatidade(id, -1)
+    const carrinhoAtualizado = mudarQuantidade(id, -1)
 
     setCarrinho([...carrinhoAtualizado]);
   }
