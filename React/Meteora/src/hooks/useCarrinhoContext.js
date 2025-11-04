@@ -4,15 +4,18 @@ import { CarrinhoContext } from "@/context/CarrinhoContext";
 export const useCarrinhoContext = () => {
   const { carrinho, setCarrinho } = useContext(CarrinhoContext);
 
-function mudarQuantidade(id, quantidade) {
-  return carrinho.map((itemDoCarrinho) => {
-    if (itemDoCarrinho.id === id) {
-      itemDoCarrinho.quantidade += quantidade;
-    }
-    return itemDoCarrinho;
-  });
-}
-  
+  function mudarQuantidade(id, quantidade) {
+    return carrinho.map((itemDoCarrinho) => {
+      if (itemDoCarrinho.id === id) {
+        return {
+          ...itemDoCarrinho,
+          quantidade: itemDoCarrinho.quantidade + quantidade,
+        };
+      }
+      return itemDoCarrinho;
+    });
+  }
+
   function adicionarProduto(novoProduto) {
     const temOProduto = carrinho.some(
       (itemDoCarrinho) => itemDoCarrinho.id === novoProduto.id
@@ -26,23 +29,29 @@ function mudarQuantidade(id, quantidade) {
       ]);
     }
 
-    const carrinhoAtualizado = mudarQuantidade(novoProduto.id, 1)
-
-    setCarrinho([...carrinhoAtualizado]);
+    const carrinhoAtualizado = mudarQuantidade(novoProduto.id, 1);
+    setCarrinho(carrinhoAtualizado);
   }
 
   function removerProduto(id) {
     const produto = carrinho.find((itemDoCarrinho) => itemDoCarrinho.id === id);
     const ehOUltimo = produto.quantidade === 1;
+
     if (ehOUltimo) {
       return setCarrinho((carrinhoAnterior) =>
         carrinhoAnterior.filter((itemDoCarrinho) => itemDoCarrinho.id !== id)
       );
     }
 
-    const carrinhoAtualizado = mudarQuantidade(id, -1)
+    const carrinhoAtualizado = mudarQuantidade(id, -1);
+    setCarrinho(carrinhoAtualizado);
+  }
 
-    setCarrinho([...carrinhoAtualizado]);
+  function removerProdutoCarrinho(id) {
+    const produtosRestantes = carrinho.filter(
+      (itemDoCarrinho) => itemDoCarrinho.id !== id
+    );
+    setCarrinho(produtosRestantes);
   }
 
   return {
@@ -50,5 +59,6 @@ function mudarQuantidade(id, quantidade) {
     setCarrinho,
     adicionarProduto,
     removerProduto,
+    removerProdutoCarrinho,
   };
 };
