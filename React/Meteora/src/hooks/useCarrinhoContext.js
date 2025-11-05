@@ -61,19 +61,20 @@ export const useCarrinhoContext = () => {
     setCarrinho(produtosRestantes);
   }
 
-  useEffect(()=> {
-    const = {totalTemp, quantidadeTemp} = carrinho.reduce((acumulador, produto) => ({
-      quantidadeTemp: acumulador.quantidadeTemp + produto.quantidade,
-      totalTemp: acumulador.totalTemp + produto.preco * produto.quantidade,
-    }),
-    {
-      quantidadeTemp: 0,
-      totalTemp: 0,
-    }
-  );
-  setQuantidade(quantidadeTemp);
-  setValorTotal(totalTemp);
-  },[carrinho])
+  useEffect(() => {
+    const { totalTemp, quantidadeTemp } = carrinho.reduce(
+      (acumulador, produto) => ({
+        quantidadeTemp: acumulador.quantidadeTemp + produto.quantidade,
+        totalTemp: acumulador.totalTemp + produto.preco * produto.quantidade,
+      }),
+      {
+        quantidadeTemp: 0,
+        totalTemp: 0,
+      }
+    );
+    setQuantidade(quantidadeTemp);
+    setValorTotal(totalTemp);
+  }, [carrinho]);
 
   return {
     carrinho,
@@ -81,5 +82,7 @@ export const useCarrinhoContext = () => {
     adicionarProduto,
     removerProduto,
     removerProdutoCarrinho,
+    valorTotal,
+    quantidade,
   };
 };
