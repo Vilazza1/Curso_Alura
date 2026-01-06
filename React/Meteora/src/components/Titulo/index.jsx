@@ -1,4 +1,4 @@
-import React from "react";
+  import React from "react";
 
 const Titulo = ({ children, classes, element, ...rest }) => {
   const Element = element || "h2";
