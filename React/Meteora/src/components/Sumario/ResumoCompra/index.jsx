@@ -1,3 +1,4 @@
+import React from "react";
 import Titulo from "@/components/Titulo";
 import ValorFormatado from "@/components/ValorFormatado";
 import { formatadorMoeda } from "@/utils/formatadorMoeda";
@@ -20,4 +21,7 @@ const ResumoCompra = () => {
         <ValorFormatado className="verde-limao" valor={valorTotal} />
       </div>
     </div>
-  )};
+  );
+};
+
+export default ResumoCompra;

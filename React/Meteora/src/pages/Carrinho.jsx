@@ -4,6 +4,7 @@ import Titulo from "@/components/Titulo";
 import Sumario from "@/components/Sumario";
 import ListaProdutosCarrinho from "@/components/ListaProdutosCarrinho";
 import BannerCarrinho from "@/components/BannerCarrinho";
+import { useCarrinhoContext } from "@/hooks/useCarrinhoContext";
 
 const Carrinho = () => {
   const { carrinho } = useCarrinhoContext();
