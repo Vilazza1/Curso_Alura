@@ -1,7 +1,13 @@
-function Inicio () {
-    return (
-        <h1>Ola Mundo novo</h1>
-    )
+import Cabecalho from "components/Cabecalho";
+import Rodape from "components/Rodape";
+
+function Inicio() {
+  return (
+    <>
+      <Cabecalho />
+      <Rodape />
+    </>
+  );
 }
 
 export default Inicio;
