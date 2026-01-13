@@ -1,5 +1,5 @@
 import styles from "./Card.module.css";
-import iconeFavoritar from './favoritar.png';
+import iconeFavoritar from './desfavoritar.png';
 
 function Card({ id, titulo, capa }) {
   return (
