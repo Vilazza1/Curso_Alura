@@ -13,39 +13,26 @@ export default function FavoritosProvider({ children }) {
   );
 }
 
-eexport default function FavoritosProvider({ children }) {
-  const [favorito, setFavorito] = useState([]);
+export function useFavoritoContext() {
+  const { favorito, setFavorito } = useContext(FavoritosContext);
 
   function adicionarFavorito(novoFavorito) {
     const favoritoRepetido = favorito.some(
-      item => item.id === novoFavorito.id
+      (item) => item.id === novoFavorito.id
     );
 
+    let novaLista = [...favorito];
+
     if (!favoritoRepetido) {
-      setFavorito([...favorito, novoFavorito]);
-    } else {
-      const novaLista = favorito.filter(
-        item => item.id !== novoFavorito.id
-      );
-      setFavorito(novaLista);
+      novaLista.push(novoFavorito);
+      return setFavorito(novaLista);
     }
+
+    novaLista.splice(novaLista.indexOf(novoFavorito), 1);
+    return setFavorito(novaLista);
   }
-
-  return (
-    <FavoritosContext.Provider
-      value={{ favorito, adicionarFavorito }}
-    >
-      {children}
-    </FavoritosContext.Provider>
-  );
-}
-
-export function useFavoritoContext() {
-  const { favorito, adicionarFavorito } =
-    useContext(FavoritosContext);
-
   return {
     favorito,
-    adicionarFavorito
+    adicionarFavorito,
   };
 }
