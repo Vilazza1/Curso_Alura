@@ -1,5 +1,12 @@
 import './Banner.css'
 
+import React from 'react'
+
+interface BannerProps {
+    enderecoImagem: string
+    textoAlternativo?: string
+}
+
 export const Banner = () => {
     // JSX
     return (
@@ -8,3 +15,5 @@ export const Banner = () => {
         </header>
     )
 }
+
+export default Banner
