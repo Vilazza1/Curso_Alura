@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Formulario from './componentes/Formulario';
 import Time from './componentes/Time';
 
-import Banner from './componentes/Banner/index'
+import { Banner } from './componentes/Banner/index'
 
 function App() {
 

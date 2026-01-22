@@ -6,7 +6,7 @@ interface BannerProps {
   textoAlternativo?: string
 }
 
-const Banner = ({
+export const Banner = ({
   enderecoImagem,
   textoAlternativo = ''
 }: BannerProps) => {
@@ -20,4 +20,4 @@ const Banner = ({
   )
 }
 
-export default Banner
+
