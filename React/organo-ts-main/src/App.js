@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import Formulario from './componentes/Formulario';
 import Time from './componentes/Time';
-import { Banner } from './componentes/Banner';
+
+import Banner from './componentes/Banner/index'
 
 function App() {
 
@@ -52,7 +53,10 @@ function App() {
 
   return (
     <div className="App">
-      <Banner enderecoImage='imagens/banner.png' textoAlternativo/>
+      <Banner 
+          enderecoImagem="/imagens/banner.png"
+          textoAlternativo="Banner principal"
+      />
       <Formulario times={times.map(time => time.nome)} aoColaboradorCadastrado={colaborador => aoNovoColaboradorAdicionado(colaborador)}/>
 
       {times.map(time => <Time 
