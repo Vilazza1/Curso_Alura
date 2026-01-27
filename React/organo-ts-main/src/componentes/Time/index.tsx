@@ -1,11 +1,10 @@
-
 import Colaborador from "../Colaborador";
 import { IColaborador } from "../compartilhado/interfaces/IColaborador";
 import "./Time.css";
 
 interface TimeProps {
   corPrimaria: string;
-  corSecundaria: string
+  corSecundaria: string;
   nome: string;
   colaboradores: IColaborador[];
 }
@@ -29,7 +28,7 @@ const Time = (props: TimeProps) => {
       </div>
     </section>
   ) : (
-    ""
+    <> </>
   );
 };
 
