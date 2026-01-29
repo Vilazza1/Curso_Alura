@@ -8,6 +8,10 @@
 
     "strict": true,
     "skipLibCheck": true,
+    "noUnusedLocals": true,
+    "noImplicitAny": true,
+    "noUnusedParameters": true,
+    
 
     "isolatedModules": true
   }
