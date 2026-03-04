@@ -1,5 +1,9 @@
+import Banner from "./components/Banner";
+
 function App() {
-  return <h1>Ola Mundo</h1>;
+  return (
+    <Banner src="public/Imagens/Banner principal/Banner.png" alt="Banner" />
+  );
 }
 
 export default App;
