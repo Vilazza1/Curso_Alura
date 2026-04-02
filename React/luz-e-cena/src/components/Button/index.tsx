@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import styles from "./Button.module.scss";
+import styles from "./Button.module.css";
 
 type ButtonProps = {
   variant: "default" | "icon";
