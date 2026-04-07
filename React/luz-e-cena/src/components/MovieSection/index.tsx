@@ -4,25 +4,10 @@ import Fieldset from "../Fieldset";
 import InputText from "../InputText";
 import styles from "./MovieSection.module.css";
 import MovieList from "../MovieList";
-import type { Movie } from "../../types";
-import { useEffect, useState } from "react";
-import { getMovies } from "../../api";
+import useFetchMovies from "../hooks/useFetchMovies";
 
 const MovieSection = () => {
-  const [movies, setMovies] = useState<Movie[]>([]);
-
-  const fetchMovies = async () => {
-    try {
-      const movies = await getMovies();
-      setMovies(movies);
-    } catch (err) {
-      console.error("Erro ao buscar filmes");
-    }
-  };
-
-  useEffect(() => {
-    fetchMovies();
-  });
+  const { movies, erro, isLoading } = useFetchMovies();
 
   return (
     <main>
