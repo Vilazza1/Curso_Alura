@@ -1,78 +1,66 @@
-import React, { useEffect, useRef } from "react";
+import React, { forwardRef, useImperativeHandle, useRef } from "react";
 import {
   ButtonGroup,
   CloseButton,
   ModalContainer,
   ModalHeader,
-  ModalOverlay,
 } from "./style";
 import Botao from "../Botao";
 
 interface ModalProps {
   icon: React.ReactNode;
   titulo: string;
-  aoFechar: () => void;
   children: React.ReactNode;
-  estaAberta: boolean;
   aoClicar: () => void;
+  clickForaMOdal: boolean;
 }
 
-const Modal = ({
-  icon,
-  titulo,
-  aoFechar,
-  children,
-  estaAberta,
-  aoClicar,
-}: ModalProps) => {
-  const dialogRef = useRef<HTMLDialogElement>(null);
+export interface ModalHandle {
+  open: () => void;
+  close: () => void;
+}
 
-  useEffect(() => {
-    const dialogNode = dialogRef.current;
+const Modal = forwardRef<ModalHandle, ModalProps>(
+  ({ icon, titulo, children, aoClicar, clickForaMOdal }, ref) => {
+    const dialogRef = useRef<HTMLDialogElement>(null);
 
-    if (dialogNode) {
-      if (estaAberta) {
-        dialogNode.showModal();
-      } else {
-        dialogNode.close();
-      }
-    }
+    const fechaMOdal = () => {
+      dialogRef.current?.close();
+    };
 
-    const handleClose = () => aoFechar();
+    useImperativeHandle(ref, () => ({
+      open: () => dialogRef.current?.showModal(),
+      close: fechaMOdal,
+    }));
 
-    if (dialogNode) {
-      dialogNode.addEventListener("close", handleClose);
-    }
-
-    return () => {
-      if (dialogNode) {
-        dialogNode.removeEventListener("close", handleClose);
+    const aoclickForaMOdal = (evento: React.MouseEvent<HTMLDialogElement>) => {
+      if (clickForaMOdal && evento.target === dialogRef.current) {
+        fechaMOdal();
       }
     };
-  }, [estaAberta, aoFechar]);
 
-  return (
-    <ModalOverlay>
-      <ModalContainer ref={dialogRef}>
-        <ModalHeader>
-          <div>
-            {icon}
-            {titulo}
-          </div>
-          <CloseButton onClick={aoFechar}>x</CloseButton>
-        </ModalHeader>
-        {children}
-        <ButtonGroup>
-          <Botao $variante="secundario" onClick={aoFechar}>
-            Cancelar
-          </Botao>
-          <Botao $variante="primario" onClick={aoClicar}>
-            Adicionar
-          </Botao>
-        </ButtonGroup>
-      </ModalContainer>
-    </ModalOverlay>
-  );
-};
+    return (
+        <ModalContainer ref={dialogRef} onClick={aoclickForaMOdal}>
+          <ModalHeader>
+            <div>
+              {icon}
+              {titulo}
+            </div>
+            <CloseButton onClick={fechaMOdal}>x</CloseButton>
+          </ModalHeader>
+          {children}
+          <ButtonGroup>
+            <Botao $variante="secundario" onClick={fechaMOdal}>Cancelar</Botao>
+            <Botao $variante="primario" onClick={() => {
+              aoClicar()
+              fechaMOdal()
+            }}>
+              Adicionar
+            </Botao>
+          </ButtonGroup>
+        </ModalContainer>
+    );
+  },
+);
 
 export default Modal;
