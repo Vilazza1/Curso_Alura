@@ -1,5 +1,11 @@
 {
-    "usuarios": [],
-    "transacoes": []
+  "usuarios": [
+    {
+      "nome": "Vinicius ",
+      "renda": "50000",
+      "id": "tnRvojWRd0M"
+    }
+  ],
+  "transacoes": [],
+  "$schema": "./node_modules/json-server/schema.json"
 }
-
