@@ -14,8 +14,27 @@
       "nome": "VInicius",
       "renda": 0,
       "id": "CX4YF0PDnDY"
+    },
+    {
+      "nome": "Vinicius",
+      "renda": "1000",
+      "id": "SbClsrM9jvk"
+    },
+    {
+      "nome": "Vinicius",
+      "renda": "10000",
+      "id": "LZiOdijMA4w"
     }
   ],
-  "transacoes": [],
+  "transacoes": [
+    {
+      "nome": "Livro",
+      "valor": "200",
+      "tipo": "despesa",
+      "categoria": "Estudos",
+      "data": "2026-05-25",
+      "id": "30djJPltC-c"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

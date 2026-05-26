@@ -17,7 +17,7 @@ import { IUsuario } from "../../types/index.ts";
 import { criarUsuario } from "../../api/index.js";
 
 const Cadastro = () => {
-  const [form, setForm] = useState<Omit<IUsuario, "id">>({
+  const [form, setForm] = useState<Omit<IUsuario, "id" | "orcamentoDiaro">>({
     nome: "",
     renda: 0,
   });
